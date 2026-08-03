@@ -1,0 +1,8 @@
+Aaron Portanova<br>
+*August 2026*
+
+# **Creating a Map Grid and Street Name Index**
+
+Many of the maps I produce share the same standard layout: a map area with the usual elements (title, legend, scale bar, north arrow, description) and a sidebar street list keyed to a grid on the map (A1, B1, A2, B2, and so on), broken up alphabetically so someone can find a street name and go straight to the right cell. That requires the grid to exist as a feature class, with each cell as a feature, so cell values can be spatially joined to the streets - and it requires every map using it to share the same extent, which I enforce by adding the town boundary polygon to each map (toggled off if necessary) and using ArcGIS Pro's 'fit extent' (Alt + click layer). I drew the initial rectangle from inside an activated map layout so it sized closely to the actual map window element, then used a Python script to divide it into a reasonable grid and enrich it with the correct cell values.
+
+The street list needed its own cleanup, since our master MassDOT roads dataset often carries multiple features per road (different segments, non-continuous roads). I dissolved a copy of the roads layer on road name to create a single feature per unique name, split that by the grid, then de-duplicated again keeping only the longest segment per name - so each road is labeled in the cell it overlaps most, rather than in every cell it touches. Spatially joining that result back to the grid produces a list of unique street names each tied to a single grid cell value, and a custom Arcade script drives a Text (distinctValues list) layout element that draws the list in the sidebar.
