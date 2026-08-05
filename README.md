@@ -3,8 +3,9 @@ Aaron Portanova<br>
 
 # **Town of Braintree Projects**
 
-***This README is a list of project links to the full project descriptions.***
-***Associated code is saved in /scripts***
+
+***This README is a list of project links to the full project descriptions.***<br>
+***Associated code is saved in /scripts***<br>
 
 ---
 
@@ -22,3 +23,7 @@ Aaron Portanova<br>
 | [Analyzing Impervious Surfaces](ANALYZING_IMPERVIOUS_SURFACES.md) | 2026 | Process for quantifying impervious surfaces |
 | [Monitoring Hydrant Flushing](MONITORING_HYDRANT_FLUSHING.md) | Ongoing | Process for monitoring fire hydrant flushing operations |
 | [Creating a Map Grid and Index](CREATING_MAP_GRID.md) | 2024 | Creating a standard map grid and sidebar street name index |
+
+<br>
+
+**THIS IS A PERSONAL PORTFOLIO ACCOUNT OF WORK PERFORMED FOR THE TOWN, AND IS NOT AN OFFICIAL TOWN PUBLICATION**
