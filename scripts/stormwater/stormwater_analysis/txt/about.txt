@@ -1,0 +1,70 @@
+  
+  Stormwater Analysis Tools
+  
+  ===================================================================================================
+  == Purpose ========================================================================================
+  ===================================================================================================
+  
+  The Stormwater Analysis Tools program is designed for the Town of Braintree Stormwater Department 
+  to analyze stormwater inlet data. It provides two main functionalities:
+  
+      1. Catchbasin Cleaning Analysis: Calculates the volume of sediment removed from catchbasins 
+         over fiscal years and visualizes the results in a graph.
+  
+      2. Sump Depth Analysis: Analyzes the sump depths of stormwater inlets, allowing users to filter 
+         by criteria (e.g., depth thresholds) or view depth distribution across predefined ranges.
+  
+  This tool integrates with ArcGIS Online to retrieve up-to-date inlet data and perform spatial 
+  analysis, helping to manage stormwater infrastructure.
+  
+  ===================================================================================================
+  == Usage ==========================================================================================
+  ===================================================================================================
+  1. Launcher:
+     - The launcher provides buttons for "Catchbasin Cleaning Analysis" and "Sump Depth Analysis".
+  
+  2. Catchbasin Cleaning Analysis:
+     - Select the desired volume units (Cubic Yards or Cubic Feet).
+     - Click "Get Volumes" to analyze cleaning records and display results.
+     - View results in the "Statistics" tab or a bar graph in the "Graph" tab.
+     - Use "Clear Results" to reset the output, or exit to return to the launcher.
+  
+  3. Sump Depth Analysis:
+     - Choose between "Criteria-Based Analysis" or "Distribution Analysis".
+     - For Criteria-Based Analysis, set the comparison type (>=, <=, or between) and specify depth 
+       thresholds.
+     - For Distribution Analysis, view the distribution of sump depths across predefined ranges.
+     - Check "Town-owned inlets only" to filter results.
+     - Click "Run Analysis" to see the results, with an option to view detailed ObjectIDs.
+     - Use "Clear Results" to reset, or exit to return to the launcher.
+  
+  ===================================================================================================
+  == Requirements ===================================================================================
+  ===================================================================================================
+  - ArcGIS Pro: You must be signed into ArcGIS Pro and have access to the Catchbasins layer to 
+  connect to ArcGIS Online.
+  
+  - Python Libraries: Ensure the following libraries are installed:
+    - tkinter
+    - arcgis
+    - matplotlib
+    - numpy
+  
+  - item_ids.json: This file must be present in the `src` directory with valid ArcGIS item IDs 
+  
+  ===================================================================================================
+  == Troubleshooting ================================================================================
+  ===================================================================================================
+  - ArcGIS Connection Errors: Ensure you are signed into ArcGIS Pro. If you recently signed out, 
+    restart the application.
+  - Missing Data: Verify that the `item_ids.json` file contains the correct item ID for the 
+    catchbasins dataset.
+  
+  ===================================================================================================
+  == About ==========================================================================================
+  ===================================================================================================
+  Version 2.0 (August 2026)
+  
+  Aaron Portanova
+  Town of Braintree Engineering Department
+  

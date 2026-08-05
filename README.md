@@ -4,7 +4,7 @@ Aaron Portanova<br>
 # **Town of Braintree Projects**
 
 ***This README is a list of project links to the full project descriptions.***
-
+***Associated code is saved in /scripts***
 
 ---
 
