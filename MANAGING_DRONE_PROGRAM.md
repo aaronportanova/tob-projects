@@ -145,3 +145,85 @@ Zoomed to a section of parking lot
 ---
 
 [← All Projects](README.md)
+
+
+
+## Overview
+
+In 2025, I became interested in the application of drones to GIS. The ability to collect 
+near-real-time, high-resolution aerial imagery is an invaluable tool for a municipal 
+engineering department - it allows stakeholders to monitor site development at every stage, 
+enables accurate digitization of visible assets like manholes and fire hydrants, and provides 
+a way to build accurate 3D models that preserve a "digital twin" of a real-world scene.
+
+Operating a drone commercially on behalf of a government agency or company requires a remote 
+pilot to hold an FAA Part 107 certification. In the fall of 2025, I enrolled in the sUAS Drone 
+Certificate program at Bridgewater State University to build my understanding of drone 
+operations, gain hands-on flight experience, and prepare for the Part 107 exam. I completed 
+the program in the spring of 2026, earned my Part 107 certification, and began developing the 
+framework for a drone program on behalf of the Town of Braintree Engineering Department.
+
+Later that spring, the Town purchased a DJI Matrice 4E - an RTK-enabled, survey-grade mapping 
+drone built for high-accuracy GIS work and aerial mapping. Massachusetts operates a statewide 
+Real-Time Kinematic (RTK) network, MaCORS, made up of base stations that stream real-time NTRIP 
+corrections to RTK-capable survey devices like the M4E. This gives the drone sub-centimeter 
+positional accuracy in ideal conditions (in practice, I typically see around 0.6" horizontal 
+accuracy reported through ArcGIS Field Maps) enabling precise georeferencing of the captured 
+aerial imagery.
+
+## Workflows and Use Cases
+
+Since acquiring the drone, I've used it to produce 2D orthomosaics and 3D models of sites 
+throughout Braintree. Imagery is processed in DJI Terra, and turnaround time depends on the  
+scale and product. 2D orthomosaics process relatively quickly, while 3D models typically take 
+overnight to reconstruct. Once Terra processing is complete, I bring the 2D or 3D product into
+ArcGIS Pro, clip to an area of interest if needed, project to Web Mercator, and publish to 
+ArcGIS Online for sharing with others.
+
+One recurring use is flying over streets ahead of paving projects to document pre-paving 
+conditions. I've also flown over streets following infrastructure work (lead service line 
+renewals, water/sewer main replacements) to capture the locations of trenches that are still 
+visible once they've been asphalted over. This helps digitize the true locations of 
+mains and services on our GIS utility layers.
+
+Site development monitoring is another key use case. I've flown over development projects in 
+Braintree before, during, and after construction, producing 2D orthomosaics and 3D models that 
+I share with the rest of the organization through ArcGIS Online. This lets stakeholders visualize 
+progress and measure volumes and areas to verify reported figures, informs meeting discussions, 
+and gives people visibility into a site without requiring an in-person visit.
+
+
+## Standard Operating Procedures
+
+At the moment this is a solo venture, but these procedures are intended to be scalable to potential 
+future remote pilots who fly on behalf of Braintree Engineering. The file structure, mission report 
+template, and data maintenance standards are all easy to copy from one user's machine to another.
+
+### File Structure
+I maintain a specific file structure for drone operations.
+
+### Pre-Flight Checklist
+Before every flight, I refer to a pre-flight checklist I put together based on the standards 
+specified in FAA Part 107 documentation. Copies of this checklist are printed and stored in the 
+drone case for convenient field access.
+
+### Mission Report
+After every mission, I fill out a mission report titled with a date/time stamp and project 
+description. The report is generated from a standard template with entry fields for date/time, 
+location, mission summary, pilot name, Part 107 certification number, weather, cloud cover, LAANC 
+number (if applicable), authorized and flown altitudes, data storage location for the project, and 
+general comments. This creates a consistent, auditable record of every flight regardless of who 
+flew it.
+
+### Data Maintenance Standards
+Due to FOIA requirements, drone data must be retained for 7 years. Drone data (images, 4K video) 
+can quickly take up significant disk space, so I added a 4TB SSD to my laptop as a dedicated GIS 
+and drone data drive, and offload all data to a mission folder on this drive after each flight. 
+Once offloaded, I make a second copy to a high-capacity external archive drive for redundancy.
+
+### LAANC Approval
+Since the northern part of Braintree lies within controlled airspace, LAANC approval is required 
+before flying in that area. A maximum altitude of 300 feet is permitted there (compared to 400 
+feet in uncontrolled airspace), and approval can be obtained in real time through a LAANC-enabled 
+app such as Aloft Air Control. Once a LAANC approval number is received, it's recorded in the 
+mission report for that mission.
