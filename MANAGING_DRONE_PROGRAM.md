@@ -158,16 +158,22 @@ Cold storage is handled through external SSDs purchased annually, with the broad
 
 ## Media
 
-![Orthomosaic of the RMV site](media/RMV_Site.jpg)
-Orthomosaic of the RMV site (~250 feet AGL, ~1 inch GSD)
+<div align="center">
+    <img src="media/RMV_Site.jpg" width="100%"><br>
+    Orthomosaic of the RMV Site
+</div><br>
 
-![Orthomosaic of the RMV site (zoomed)](media/RMV_Site_zoomed.jpg)
-Zoomed to a section of parking lot
+<div align="center">
+    <img src="media/RMV_Site_zoomed.jpg" width="100%"><br>
+    Zoomed to a section of parking lot
+</div><br>
 
-![3D model of the RMV site](media/RMV_Site_3D.jpg)
-3D model of the RMV site
+<div align="center">
+    <img src="media/RMV_Site_3D.jpg" width="100%"><br>
+    3D model of the RMV site
+</div><br>
 
-<!-- pre / post paving example, in-person photo of drone being used -->
+<!-- pre / post paving , in-person photo of drone being used.. -->
 
 ---
 
