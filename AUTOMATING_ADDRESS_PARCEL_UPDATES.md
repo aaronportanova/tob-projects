@@ -153,7 +153,7 @@ Once parcels are updated, I regenerate the affected tax map. Braintree's assesso
 ## Tax Parcel Media
 
 <div align="center">
-    <img src="media/something.jpg" width="100%"><br>
+    <img src="media/Parcel_Split.gif" width="100%"><br>
     Before / after of a lot split
 </div><br>
 
@@ -293,13 +293,13 @@ That last 0.6% could have been automated, in the sense that another few rounds o
 ## Address Media
 
 <div align="center">
-    <img src="media/something.jpg" width="100%"><br>
-    Master dataset stacked points vs published 'spread' points
+    <img src="media/Addresses_Stacked_Spread.gif" width="100%"><br>
+    Stacked Address Points (Master) vs. Published Address Points (Spread)
 </div><br>
 
 <div align="center">
-    <img src="media/something.jpg" width="100%"><br>
-    Unit addresses grouped and stacked at a multi-unit complex
+    <img src="media/Address_Labeled.jpg" width="100%"><br>
+    Published Address Points Labeled on a Web Map
 </div><br>
 
 ---
