@@ -19,7 +19,7 @@ Aaron Portanova<br>
 | [Field Workflow](#field-workflow) | What crews actually do |
 | [The Notification Pipeline](#the-notification-pipeline) | How records become emails |
 | [Deployment](#deployment) | Running it on GitHub Actions |
-| [What This Does and Doesn't Solve](#what-this-does-and-doesnt-solve) | Honest scope |
+| [What This Does and Doesn't Solve](#what-this-does-and-doesnt-solve) | Scope of project |
 | [Lessons Learned](#lessons-learned) | What I'd tell someone building this |
 
 ---
