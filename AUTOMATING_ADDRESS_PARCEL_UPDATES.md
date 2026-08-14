@@ -158,7 +158,7 @@ Once parcels are updated, I regenerate the affected tax map. Braintree's assesso
 </div><br>
 
 <div align="center">
-    <img src="media/Generate_Tax_Map.gif" width="90%"><br>
+    <img src="media/Generate_Tax_Map.gif" width="100%"><br>
     Example of automatic Tax Map generation
 </div><br>
 
