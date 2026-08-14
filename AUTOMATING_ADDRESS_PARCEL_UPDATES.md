@@ -306,25 +306,25 @@ That last 0.6% could have been automated, in the sense that another few rounds o
 
 ## Lessons Learned
 
-**A geometry-derived key is elegant until the geometry changes.** `LOC_ID` guarantees uniqueness for free and requires no coordination to issue, which is genuinely clever. The cost is that editing a boundary can change the key, and a changed key is a dropped join. Any workflow built on one needs a deliberate step for communicating those changes to whoever holds the other half of the relationship.
+**A geometry-derived key is elegant until the geometry changes.** `LOC_ID` guarantees uniqueness for free since it's inside a unique parcel, which is clever. The cost is that editing a boundary can change it, which can break the join. This kind of workflow requires a deliberate step for communicating those changes to whoever holds the other half of the relationship, in my case the Assessor's office.
 
-**Never let an external system depend on a system-managed ID.** GlobalIDs are stable within a dataset and meaningless across a regenerated one. Copying the parent's GlobalID into a plain GUID field is a one-line change that makes an entire integration possible.
+**Never let an external system depend on a system-managed ID.** GlobalIDs are stable within a dataset but meaningless across a regenerated one. Copying the parent's GlobalID into a plain GUID field is a one-line change that makes an entire integration possible.
 
-**Categorize before you match.** The single biggest win in the address work wasn't a better matching algorithm - it was a QC pass that sorted parcels by whether their address and assessor record counts agreed. Most of them needed no address parsing at all, and the ones that did only had to be matched against a handful of candidates within their own parcel. Sorting the problem first turned one hard problem into several easy ones.
+**Categorize before you match.** The biggest success in the address work wasn't a better matching algorithm - it was a QC pass that sorted parcels by whether their address and assessor record counts agreed. Most of them needed no address parsing at all, and the ones that did only had to be matched against a handful of candidates within their own parcel. Sorting the problem first turned one hard problem into several easier ones.
 
-**Know when to stop automating.** The last 68 parcels out of 12,000 could have been automated with enough complex-specific rules. Ten hours by hand was cheaper than writing, testing, and verifying rules that would never run again.
+**Know when to stop automating.** The last 68 parcels out of 12,000 could have been automated with enough complex-specific rules. A few hours by hand was cheaper than writing, testing, and verifying rules that would never be used again.
 
-**Separate config from logic early.** Splitting paths, URLs, field names, and constants into their own file made every subsequent change to these scripts cheaper. It also makes the main script readable as a sequence of intentions rather than a wall of hardcoded paths.
+**Separate config from logic early on.** Splitting paths, URLs, field names, and constants into their own file made every subsequent change to these scripts cheaper. It also makes the main script readable as an order of operations rather than a bunch of hardcoded paths.
 
-**Delete-and-reload trades convenience for control.** Overwrite Web Layer is one click, but it can disturb symbology and item URLs. Deleting features and appending gives me exact control over what changes - with the tradeoff that the local master has to be the single source of truth, since anything edited on the online side won't survive the next run.
+**Delete-and-reload trades convenience for control.** Overwrite Web Layer is one click, but it can disturb symbology and item URLs. Deleting features and appending gives me exact control over what changes - with the tradeoff that the local master has to be the single source of truth, since anything edited on the online side won't survive the next run. It also allows for extensive customization in one run, since the 'overwrite parcels' script does significantly more than 'overwrite web layer' would do by itself.
 
-**Check for the official tool before building your own.** I wrote a conversion routine for the assessor extract that MassGIS had already solved with Assess Prep, and in the process shipped a dataset that failed the state QA test on field types. Reformatting and republishing everything downstream cost far more than the twenty minutes of reading would have.
+**Check for the official tool before building your own.** I wrote a conversion routine for the assessor extract that MassGIS had already solved with Assess Prep, and in the process shipped a dataset that failed the state QA test on field types. Reformatting and republishing everything multiple times cost far more than twenty minutes of reading would have.
 
-**Type mismatches are the most common cause of a failed join, and the least obvious.** A `CAMA_ID` stored as a double joining to one stored as text produces zero matches and no error at all - the join simply succeeds and populates nothing. It's now handled explicitly in the address script, but it cost me time before it was.
+**Type mismatches are the most common cause of a failed join, and not very obvious.** A `CAMA_ID` stored as a double joining to one stored as text produces zero matches and no error at all - the join simply succeeds and populates nothing. It's now handled explicitly in the address script, but it cost me time.
 
-**Print your counts.** Every one of these scripts reports how many records got a `LOC_ID`, how many got owner info, how many were spread. Those numbers are how I know a run was clean without opening the output, and how I notice when something upstream has shifted.
+**Print your counts.** Every one of these scripts reports how many records got a `LOC_ID`, how many got owner info, how many were spread. Those numbers are how I know a run was clean without opening the output, and how I notice when something has shifted.
 
-**Delete by explicit list, not by exclusion.** The address script names the fields it removes rather than the fields it keeps, so a new field appearing in the assessor extract survives to the output and I find out about it. The reverse would drop it.
+**Delete by explicit list, not by exclusion.** The address script names the fields it removes rather than the fields it keeps, so a new field appearing in the assessor extract survives to the output and I find out about it. The reverse would drop it with no mention of what happened.
 
 ---
 
