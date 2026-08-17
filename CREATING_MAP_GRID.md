@@ -46,6 +46,8 @@ Getting that first rectangle right took some fiddling. I had to zoom the layout 
 
 This could probably have been scripted to correct the geometry of the initial polygon, but doing it manually worked just as well and got it very close to a true rectangle fitting inside the 'fit extent' of the town boundary. While somewhat finicky, the approach works reliably, and it only has to be done once.
 
+Once the grid feature class was built and lined up correctly, I drew a grid layout element that traces the grid feature class very closely, to build the grid as a standard layout element rather than a feature class that needed configuring every time I need to generate a map layout.
+
 ---
 
 ## Building the Street List
@@ -68,8 +70,8 @@ The resulting feature class carries the fields the sidebar needs:
 | `STREETNAME` | The road name, stored uppercase |
 | `Label` | The grid cell the street was assigned to (e.g. `D4`) |
 | `Header` | The letter heading, populated only on the first street of each alphabetical group |
-| `Shape_Length` | Length of the retained segment |
 | `TRASHDAY` | Collection day for that street - see below |
+| `Shape_Length` | Length of the retained segment |
 
 ---
 
@@ -91,35 +93,40 @@ if (!IsEmpty($feature.Header)) {
 
 ## Reusing the List: Trash Day Map
 
-The curated street list turned out to be worth more than the one map it was built for. It also drives the Trash Day map on the town website, which answers a question residents ask constantly: what day does my street get picked up?
+The curated street list turned out to be useful for more than the one side-bar street list style it was built for. It also drives the Trash Day map, which shows trash days by region and street name.
 
-That map uses the same feature class and the same grid cell references, but organizes the sidebar differently. Instead of alphabetical letter sections, the list is broken into collection day sections - Monday, Tuesday, Wednesday, Thursday, Friday - with streets alphabetized within each day. A resident finds their day, finds their street, and gets the grid cell to locate it on the map.
+That map uses the same feature class and the same grid cell references, but organizes the sidebar differently. Instead of alphabetical letter sections, the list is broken into collection day sections - Monday, Tuesday, Wednesday, Thursday, Friday - with streets alphabetized within each day. This grouping didn't require any custom Arcade - I just choose `TRASHDAY` as the Field value in the Distinct Values Table Attribute option under Dynamic Text, and `STREETNAME` as the Sort Field. A resident finds their day, finds their street, and gets the grid cell to locate it on the map.
 
-The payoff of having done the dissolve-split-dedupe work once is that adding a second product meant adding a field and changing how the sidebar groups, not rebuilding the street list from the roads data again.
+The payoff of having done the dissolve-split-dedupe work once is that adding a second product meant adding a field and changing how the sidebar groups, not rebuilding the whole street list again.
+
+[Trash Day Map](https://aaronportanova.com/images/maps/Trash_Days.jpg)
 
 ---
 
 ## Lessons Learned
 
-**If a map element needs to know about the data, it has to be data.** A drawn grid looks identical to a grid feature class right up until you need to know which cell a street falls in. Building it as features cost more up front and made the entire index automatic.
+**If a map element needs to know about the data, it has to be data.** A drawn grid looks identical to a grid feature class right up until you need to know which cell a street falls in. Building it as features cost more up front and made the entire index automatic, and allowed me to draw an actual map layout grid on top of it to create a standard 36"x36" template.
 
-**Decide what "which cell" means before building the index.** A street can legitimately occupy several cells. Picking the longest segment is a judgment call, not a technical necessity, and it's the call that determines whether the index is actually useful to someone holding the map.
+**Decide what "which cell" means before building the index.** A street can legitimately occupy several cells. Picking the longest segment is a judgment call, not a technical necessity, and it's the call that determines whether the index is actually useful to someone looking for the street on the map.
 
-**Manual is fine for a one-time setup step.** The rectangle geometry could have been corrected with a script. It's drawn once and reused by every map, so the script would have taken longer to write than the fix took to do.
+**Manual is fine for a one-time setup step.** The rectangle geometry could have been corrected with a script. It's drawn once and used to create a grid that is standard on ever map built from that template, so the script would have taken longer to write than the fix took to do.
 
-**Cleaned reference data outlives the map it was made for.** The street list was built for one layout and now drives the public Trash Day map as well. The dissolve-split-dedupe work was the expensive part, and it only had to happen once.
+**Cleaned reference data outlives the map it was made for.** The street list was built for one layout template and now drives the public Trash Day map as well. The dissolve-split-dedupe work was the expensive part, and it only had to happen once.
 
 ---
 
 ## Media
 
 <div align="center">
-    <img src="media/something.jpg" width="100%"><br>
-    Standard layout with grid and sidebar street index
+    <img src="media/Layout_Template.jpg" width="90%"><br>
+    Standard layout template with grid and sidebar street index
+</div><br>
+
+<div align="center">
+    <img src="media/Street_List.jpg" width="40%"><br>
+    Street Index (zoomed)
 </div><br>
 
 ---
 
 [← All Projects](README.md)
-
-<!-- link to trash day map on site, talk about how trash day map list is drawn vs regular street list, discuss initial grid creation process more -->
